@@ -5,26 +5,25 @@ using UnityEngine;
 
 public class ClickScript : MonoBehaviour
 {
-    public GameObject parent;
+    private Transform parent;
+    private int i;
+    public int activeRoofID;
+    void Start()
+    {
+        parent = GameObject.Find("Roofs").GetComponent<Transform>();
+        activeRoofID = 0;
+        i = 0;
+    }
     public void OnClick()
     {
-        Transform childobjs = parent.transform;
-        for (int i = 0; i < childobjs.childCount; i++)
+        parent.GetChild(i).gameObject.SetActive(false);
+        i++;
+        if (i == parent.childCount)
         {
-            Debug.Log(childobjs.GetChild(i).gameObject.ToString());
-            if (childobjs.GetChild(i).gameObject.activeSelf == true)
-            {
-                if (i == childobjs.childCount - 1)
-                {
-                    childobjs.GetChild(i).gameObject.SetActive(false);
-                    i = 0;
-                    childobjs.GetChild(i).gameObject.SetActive(true);
-                    break;
-                }
-                    childobjs.GetChild(i).gameObject.SetActive(false);
-                    childobjs.GetChild(i+1).gameObject.SetActive(true);
-                    break;
-            }
+            i = 0;
         }
+        parent.GetChild(i).gameObject.SetActive(true);
+        activeRoofID = i;
+        Debug.Log(parent.GetChild(i).gameObject.name);
     }
 }

@@ -5,21 +5,29 @@ using TMPro;
 
 public class RaycastHitRoof : MonoBehaviour
 {
-    public GameObject UI_Menu;
-    public GameObject table;
+    public GameObject UIMenu;
+    GameObject staticCanvas;
+    void Start()
+    {
+        staticCanvas = GameObject.Find("CanvasStatic");
+    }
     void Update()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (!UI_Menu.activeSelf)
+        if (!UIMenu.activeSelf)
         {
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag == "Roof")
+                Debug.Log(hit.collider.tag);
+                if (hit.collider.tag != "Menu")
                 {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.tag == "Roof")
                     {
-                        table.SetActive(!table.activeSelf);
+                        if (Input.GetKeyDown(KeyCode.Mouse0))
+                        {
+                            staticCanvas.SetActive(!staticCanvas.activeSelf);
+                        }
                     }
                 }
             }
