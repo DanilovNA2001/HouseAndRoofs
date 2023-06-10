@@ -25,12 +25,11 @@ public class TextChange : MonoBehaviour
         float p = (a + b + c) * 0.5f;
         return Mathf.Sqrt(p * (p - a) * (p - b) * (p - c));
     }
-    float AreaOfMesh(Mesh mesh)
+    public float AreaOfMesh(Mesh mesh)
     {
         float area = 0;
         Vector3[] vertices = mesh.vertices;
         int[] triangles = mesh.triangles;
-        Debug.Log(vertices.Length);
         for (int i = 0; i < mesh.triangles.Length; i += 3)
         {
             Vector3 p1 = vertices[triangles[i]];

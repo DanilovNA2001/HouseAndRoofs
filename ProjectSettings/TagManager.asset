@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Roof
   - Menu
+  - Normal
+  - Gable
+  - Hip
   layers:
   - Default
   - TransparentFX
